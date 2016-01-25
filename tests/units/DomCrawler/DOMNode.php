@@ -77,13 +77,13 @@ class DOMNode extends atoum\test
             ->and($object = new TestedClass($crawler))
             ->then
                 ->object($children = $object->children())->isInstanceOf('\\Symfony\\Component\\DomCrawler\\Crawler')
-                ->object($children->getNode(0))
-                    ->isEqualTo($child)
+                ->array(iterator_to_array($children, false))
+                    ->contains($child)
             ->if($object = new TestedClass($node))
             ->then
                 ->object($children = $object->children())->isInstanceOf('\\Symfony\\Component\\DomCrawler\\Crawler')
-                ->object($children->getNode(0))
-                    ->isEqualTo($child)
+                ->array(iterator_to_array($children, false))
+                    ->contains($child)
         ;
     }
 }
